@@ -1,7 +1,7 @@
-version: "3.8"
 services:
   backend:
-    #image: "efrei2023/backend:1"
+    image: "efrei2023/backend-alexah:2001"
+    container_name: backend
     build:
       context: backend
       dockerfile: Dockerfile
@@ -15,7 +15,8 @@ services:
     build:
       context: frontend
       dockerfile: Dockerfile
-    #image: "efrei2023/frontend:1"
+    image: "efrei2023/frontend-alexah:2001"
+    container_name: frontend
     networks:
       - efrei_net
     ports:
