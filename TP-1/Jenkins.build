@@ -53,20 +53,11 @@ pipeline {
       }
     }
 
-    stage('Deploy backend container') {
+    stage('Deploy containers') {
       steps {
-        echo "Run  backend conatiner "
-        sh '''        
-          docker run -d --net=efrei -e POSTGRES_PASSWORD=postgres --name backend efrei2023/backend-alexah:2001
-        '''
-      }
-    }
-    stage('Deploy frontend container') {
-      steps {
-        echo "Run  backend container "
-        sh '''
-          docker run -d --net=efrei -p 8081:80 -e POSTGRES_PASSWORD=postgres --name frontend efrei2023/frontend-alexah:2001
-        '''
+        dir('TP-1') {
+          sh 'docker compose up -d'
+        }
       }
     }
   }
