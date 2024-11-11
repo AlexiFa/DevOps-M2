@@ -56,13 +56,17 @@ pipeline {
     stage('Deploy backend container') {
       steps {
         echo "Run  backend conatiner "
-        docker run -d --net=efrei -e POSTGRES_PASSWORD=postgres --name backend backend-alexah:2001
+        sh '''        
+          docker run -d --net=efrei -e POSTGRES_PASSWORD=postgres --name backend backend-alexah:2001
+        '''
       }
     }
     stage('Deploy frontend container') {
       steps {
         echo "Run  backend container "
-      docker run -d --net=efrei -p 8081:80 -e POSTGRES_PASSWORD=postgres --name frontend frontend-alexah:2001
+        sh '''
+          docker run -d --net=efrei -p 8081:80 -e POSTGRES_PASSWORD=postgres --name frontend frontend-alexah:2001
+        '''
       }
     }
   }
