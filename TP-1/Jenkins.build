@@ -2,7 +2,9 @@ def backendImage = 'backend-alexah:2001'
 def frontendImage = 'frontend-alexah:2001'
 pipeline {
 
-  agent any
+  agent {
+    label 'jenkins-slave'
+  }
 
   stages {
     stage('Cloning Git') {
