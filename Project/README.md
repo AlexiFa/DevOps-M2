@@ -36,6 +36,10 @@ sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 - Docker Pipeline
 
+### Create Jenkins Agent (and launch it) <!-- TODO -->
+
+### Create Credentials <!-- TODO -->
+
 ### Create Jenkins Pipeline <!-- TODO : add arrows to the screenshots -->
 
 ![Jenkins new item](screen/1-jenkins-new-item.png)
@@ -43,3 +47,13 @@ sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ![Jenkins new pipeline](screen/2-jenkins-new-pipeline.png)
 
 ![Jenkins pipeline configuration](screen/3-jenkins-configure-pipeline.png)
+
+then, you can build the pipeline from the jenkins dashboard and at the end you will see the container running
+
+```bash
+sudo docker ps
+```
+
+And you will see the API running at `http://localhost:8081`
+
+`http://localhost:8081/whoami` will return our names
