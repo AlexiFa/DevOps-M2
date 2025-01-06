@@ -1,0 +1,6 @@
+services:
+  project-app:
+    image: efrei2023/project-alexah:2001
+    ports:
+      - "8081:8080"
+    restart: always

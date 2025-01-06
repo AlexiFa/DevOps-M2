@@ -1,0 +1,64 @@
+def backendImage = 'backend-alexah:2001'
+def frontendImage = 'frontend-alexah:2001'
+pipeline {
+
+  agent {
+    label 'jenkins-slave'
+  }
+
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/AlexiFa/DevOps-M2'
+      }
+    }
+    stage('Building backend image') {
+      steps {
+        script {
+          dir('Project/webapi') {
+            backendImage = docker.build("efrei2023/backend-alexah:2001")
+
+          }
+        }
+      }
+    }
+    stage('Publish backend Image') {
+      steps {
+        script {
+          withDockerRegistry(credentialsId: 'dockerhub-credentials') {
+            backendImage.push()
+          }
+
+        }
+      }
+    }
+
+    stage('Building frontend image') {
+      steps {
+        script {
+          dir('Project/webapi') {
+            frontendImage = docker.build("efrei2023/frontend-alexah:2001")
+          }
+        }
+      }
+    }
+
+    stage('Publish frontend Image') {
+      steps {
+        script {
+          withDockerRegistry(credentialsId: 'dockerhub-credentials') {
+            frontendImage.push()
+          }
+        }
+      }
+    }
+
+    stage('Deploy containers') {
+      steps {
+        dir('Project') {
+          sh 'docker compose up -d'
+        }
+      }
+    }
+  }
+}
