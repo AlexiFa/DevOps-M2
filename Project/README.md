@@ -15,7 +15,7 @@ docker --version            # Should be Docker 24.0.7 or higher
 minikube version            # Should be Minikube v1.31.2 or higher
 kubectl version --client    # Should be Kubernetes CLI v1.28.3 or higher
 docker-compose --version    # Should be Docker Compose v2.23.0 or higher
-git --version
+git --version               # Should be Git 2.41.0 or higher
 ```
 
 ## Setup
