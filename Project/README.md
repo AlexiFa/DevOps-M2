@@ -31,3 +31,15 @@ Get the admin password
 ```bash
 sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
+
+### Install Jenkins Plugins <!-- TODO : check if it is enough -->
+
+- Docker Pipeline
+
+### Create Jenkins Pipeline <!-- TODO : add arrows to the screenshots -->
+
+![Jenkins new item](screen/1-jenkins-new-item.png)
+
+![Jenkins new pipeline](screen/2-jenkins-new-pipeline.png)
+
+![Jenkins pipeline configuration](screen/3-jenkins-configure-pipeline.png)
