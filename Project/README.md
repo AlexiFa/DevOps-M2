@@ -20,6 +20,12 @@ git --version               # Should be Git 2.41.0 or higher
 
 ## Setup
 
+### Retrieve the source code repository locally on your virtual machine with the command
+
+```bash
+git clone https://github.com/AlexiFa/DevOps-M2/Project.git
+```
+
 ### Launch Jenkins
 
 ```bash
@@ -38,7 +44,28 @@ sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 ### Create Jenkins Agent (and launch it) <!-- TODO -->
 
+
 ### Create Credentials <!-- TODO -->
+
+Navigate to Manage Jenkins > Credentials in the Jenkins interface.
+
+Add two sets of credentials:
+
+Git : https://github.com/AlexiFa/DevOps-M2/Project.git
+username: bash```ST2DCE```
+password: bash```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```
+
+Docker Hub:
+Username: bash```efrei2023```
+Password: bash```efrei2023```
+
+### Create a network for docker infrastructure:
+
+```bash
+docker network create --driver bridge efrei
+```
+
+
 
 ### Create Jenkins Pipeline <!-- TODO : add arrows to the screenshots -->
 
