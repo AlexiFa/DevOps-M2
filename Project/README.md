@@ -29,7 +29,7 @@ git clone https://github.com/AlexiFa/DevOps-M2/Project.git
 ### Launch Jenkins
 
 ```bash
-sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins --restart unless-stopped jenkins/jenkins:lts-jdk-17
+sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins --restart unless-stopped jenkins/jenkins:lts-jdk17
 ```
 
 Get the admin password
@@ -38,25 +38,27 @@ Get the admin password
 sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
+- select `install the suggested plugins` (wait for the installation to finish and do the setup steps)
+
 ### Install Jenkins Plugins <!-- TODO : check if it is enough -->
 
-Go to Manage Jenkins > Plugins.
+- Go to Manage Jenkins > Plugins.
 
-Search for and install the "Docker Pipeline" plugin.
+- Search and install the "Docker Pipeline" plugin.
 
+- Click on restart Jenkins when installation is complete.
 
 ### Create Credentials <!-- TOcheck -->
 
 Navigate to Manage Jenkins > Credentials in the Jenkins interface.
 
+Add two sets of credentials by clicking on (Global) then Add Credentials:
 
-Add two sets of credentials:
+<!-- Git : https://github.com/AlexiFa/DevOps-M2/Project.git
 
-	Git : https://github.com/AlexiFa/DevOps-M2/Project.git
+		you can put your github username and password
 
-		username: ST2DCE
-
-		password: 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
+        ID: github-credentials -->
 
 	Docker Hub:
 
@@ -64,34 +66,40 @@ Add two sets of credentials:
 
 		Password: efrei2023
 
-### Create a network for docker infrastructure:
+        ID: dockerhub-credentials
+
+<!-- ### Create a network for docker infrastructure:
 
 ```bash
 docker network create --driver bridge efrei
-```
+``` -->
 
 ### Set Up a Jenkins Slave
 
 #### Prepare the Slave Machine:
-  - Install Java (Jenkins requires Java to run).
+  - Install Java (Jenkins requires Java to run). (openjdk 17)
   - Install Docker (if builds involve Docker commands).
-  - Create a dedicated user for Jenkins.
+  <!-- - Create a dedicated user for Jenkins. -->
   
 #### Connect the Slave to the Master:
-  On Jenkins, go to Manage Jenkins > Nodes and Clouds > New Node.
+  On Jenkins, go to Manage Jenkins > Nodes > New Node.
 #### Add the slave machine details:
-  - Provide a name for the node.
+  - Name it "jenkins-slave".
   - Choose "Permanent Agent".
   - Set up the remote root directory (e.g., /home/jenkins).
-  - Add the machine's labels for job targeting.
-  - Copy the "agent.jar" from the Jenkins master to the slave machine.
+    - you need to create the directory
+  <!-- - Add the machine's labels for job targeting. -->
+  <!-- - Copy the "agent.jar" from the Jenkins master to the slave machine. -->
 
 #### Start the Slave:
 
+click on the slave and copy the command line to run on your machine
+
+eg.:
 ```bash
-java -jar agent.jar -jnlpUrl <JENKINS_MASTER_URL>/computer/<SLAVE_NODE_NAME>/slave-agent.jnlp -secret <SECRET_KEY> -workDir "/path/to/work/dir"
+curl -sO http://localhost:8080/jnlpJars/agent.jar
+sudo java -jar agent.jar -url http://127.0.0.1:8080/computer/ -secret <SECRET_KEY privided> -name "jenkins-slave" -webSocket -workDir "/home/jenkins"
 ```
-Replace <JENKINS_MASTER_URL>, <SLAVE_NODE_NAME>, and <SECRET_KEY> with appropriate values from the Jenkins configuration.
 
 #### Verify Connection:
 
