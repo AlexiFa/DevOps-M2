@@ -46,13 +46,15 @@ Navigate to Manage Jenkins > Credentials in the Jenkins interface.
 
 Add two sets of credentials by clicking on (Global) then Add Credentials:
 
-	Docker Hub:
+```text
+Docker Hub:
 
-		Username: efrei2023
+- Username: efrei2023
 
-		Password: efrei2023
+- Password: efrei2023
 
-    ID: dockerhub-credentials
+- ID: dockerhub-credentials
+```
 
 ### Set Up a Jenkins Slave
 
