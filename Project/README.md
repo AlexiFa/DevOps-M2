@@ -100,6 +100,8 @@ The slave should now appear as "online" in the Jenkins "Nodes" section.
 
 then, you can build the pipeline from the jenkins dashboard and at the end you will see the container running
 
+`note`: you may need to enter the sudo password in the command line where the agent.jar is running
+
 ```bash
 sudo docker ps
 ```
