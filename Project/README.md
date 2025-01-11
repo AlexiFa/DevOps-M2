@@ -29,7 +29,7 @@ git clone https://github.com/AlexiFa/DevOps-M2/Project.git
 ### Launch Jenkins
 
 ```bash
-sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins --restart unless-stopped jenkins/jenkins:lts-jdk17
+sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped jenkins/jenkins:lts-jdk17
 ```
 
 Get the admin password

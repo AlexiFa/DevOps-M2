@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Cloning Git') {
             steps {
-                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/AlexiFa/DevOps-M2'
+                git branch: 'main', url: 'https://github.com/AlexiFa/DevOps-M2'
             }
         }
 
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     dir('Project/webapi') {
-                        sh 'sudo docker build -t ${APP_IMAGE} .'
+                        sh 'docker build -t ${APP_IMAGE} .'
                     }
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-credentials') {
-                        sh 'sudo docker push ${APP_IMAGE}'
+                        sh 'docker push ${APP_IMAGE}'
                     }
                 }
             }
