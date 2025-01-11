@@ -54,19 +54,19 @@ Navigate to Manage Jenkins > Credentials in the Jenkins interface.
 
 Add two sets of credentials by clicking on (Global) then Add Credentials:
 
-<!-- Git : https://github.com/AlexiFa/DevOps-M2/Project.git
+    Git : https://github.com/AlexiFa/DevOps-M2/Project.git
 
-		you can put your github username and password
+	    you can put your github username and password
 
-        ID: github-credentials -->
+      ID: github-credentials
 
-	Docker Hub:
+	  Docker Hub:
 
-		Username: efrei2023
+		  Username: efrei2023
 
-		Password: efrei2023
+		  Password: efrei2023
 
-        ID: dockerhub-credentials
+      ID: dockerhub-credentials
 
 <!-- ### Create a network for docker infrastructure:
 
@@ -86,7 +86,7 @@ docker network create --driver bridge efrei
 #### Add the slave machine details:
   - Name it "jenkins-slave".
   - Choose "Permanent Agent".
-  - Set up the remote root directory (e.g., /home/jenkins).
+  - Set up the remote root directory (take a dir where you have right eg: /home/alex/workspace/agent).
     - you need to create the directory
   <!-- - Add the machine's labels for job targeting. -->
   <!-- - Copy the "agent.jar" from the Jenkins master to the slave machine. -->
@@ -98,7 +98,7 @@ click on the slave and copy the command line to run on your machine
 eg.:
 ```bash
 curl -sO http://localhost:8080/jnlpJars/agent.jar
-sudo java -jar agent.jar -url http://127.0.0.1:8080/computer/ -secret <SECRET_KEY privided> -name "jenkins-slave" -webSocket -workDir "/home/jenkins"
+sudo java -jar agent.jar -url http://127.0.0.1:8080/computer/ -secret <SECRET_KEY privided> -name "jenkins-slave" -webSocket -workDir "/home/alex/worksapce/agent"
 ```
 
 #### Verify Connection:
