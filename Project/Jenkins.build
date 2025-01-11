@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     dir('Project/webapi') {
-                        sh 'docker build -t ${APP_IMAGE} .'
+                        sh 'sudo docker build -t ${APP_IMAGE} .'
                     }
                 }
             }
