@@ -5,6 +5,7 @@ pipeline {
 
     environment {
         APP_IMAGE = "efrei2023/project-alexah:2001" // Nom et tag de l'image Docker
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
     }
 
     stages {
@@ -26,11 +27,10 @@ pipeline {
 
         stage('Publishing Application Image') {
             steps {
-                script {
-                    withDockerRegistry(credentialsId: 'dockerhub-credentials') {
-                        sh 'docker push ${APP_IMAGE}'
-                    }
-                }
+                sh '''
+                    echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+                    sudo docker push ${APP_IMAGE}
+                '''
             }
         }
 
