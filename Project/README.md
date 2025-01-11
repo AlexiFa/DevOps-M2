@@ -111,3 +111,17 @@ sudo docker ps
 And you will see the API running at `http://localhost:8081`
 
 `http://localhost:8081/whoami` will return our names
+
+### Start minikube
+
+Add the user to the docker group to be able to use docker sithout sudo privileges
+
+```bash
+sudo usermod -aG docker $USER && newgrp docker
+```
+
+Then, you can start minikube with the following command
+
+```bash
+minikube start --driver=docker
+```
