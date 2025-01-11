@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-credentials') {
-                        sh 'sudo docker push ${APP_IMAGE}'
+                        sh 'docker push ${APP_IMAGE}'
                     }
                 }
             }
