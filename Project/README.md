@@ -27,6 +27,13 @@ sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
 sudo apt-get update
 sudo apt-get install pack-cli
 ```
+<!-- 
+Install go libraries
+
+```bash
+sudo apt install golang-go
+go get -u github.com/cncf/buildpack/pack
+``` -->
 
 ### Retrieve the source code repository locally on your virtual machine with the command
 
