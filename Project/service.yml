@@ -7,6 +7,8 @@ spec:
   selector:
     app: webapi
   ports:
-  - port: 8081        # Port du service
-    targetPort: 8081  # Port du container
+  - name: http
+    port: 8081        # Port du service
+    targetPort: http
+    NodePort: 30081  # Port du container
     protocol: TCP

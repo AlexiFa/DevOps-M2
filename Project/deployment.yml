@@ -16,4 +16,6 @@ spec:
       - name: webapi
         image: efrei2023/project-alexah:2001
         ports:
-        - containerPort: 8081  # Modifié pour correspondre au port exposé dans le Dockerfile
+        - containerPort: 8081
+          name: http
+        imagePullPolicy: Always
