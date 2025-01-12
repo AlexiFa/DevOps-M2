@@ -35,7 +35,7 @@ sudo usermod -aG docker $USER && newgrp docker
 ### Launch Jenkins
 
 ```bash
-sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped jenkins/jenkins:lts-jdk17
+sudo docker run -d -p 8081:8080 -p 50000:50000 --name jenkins -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped jenkins/jenkins:lts-jdk17
 ```
 
 Get the admin password
@@ -90,8 +90,8 @@ click on the slave and copy the command line to run on your machine
 eg.:
 
 ```bash
-curl -sO http://localhost:8080/jnlpJars/agent.jar
-sudo java -jar agent.jar -url http://127.0.0.1:8080/computer/ -secret <SECRET_KEY privided> -name "jenkins-slave" -webSocket -workDir "/home/alex/worksapce/agent"
+curl -sO http://localhost:8081/jnlpJars/agent.jar
+sudo java -jar agent.jar -url http://127.0.0.1:8081/computer/ -secret <SECRET_KEY privided> -name "jenkins-slave" -webSocket -workDir "/home/alex/worksapce/agent"
 ```
 
 #### Verify Connection
@@ -114,9 +114,9 @@ then, you can build the pipeline from the jenkins dashboard and at the end you w
 sudo docker ps
 ```
 
-And you will see the API running at `http://localhost:8081`
+And you will see the API running at `http://localhost:8080`
 
-`http://localhost:8081/whoami` will return our names
+`http://localhost:8080/whoami` will return our names
 
 ![Jenkins pipeline running](screen/result-whoami.png)
 
