@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     dir('Project/webapi') {
-                        sh 'pack build ${APP_IMAGE} --path . --builder paketobuilpacks/builder:base'
+                        sh 'docker build -t ${APP_IMAGE} .'
                     }
                 }
             }

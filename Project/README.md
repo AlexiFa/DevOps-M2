@@ -20,13 +20,13 @@ git --version               # Should be Git 2.41.0 or higher
 
 ## Setup
 
-### Instal buildpacks
+<!-- ### Instal buildpacks
 
 ```bash
 sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
 sudo apt-get update
 sudo apt-get install pack-cli
-```
+``` -->
 <!-- 
 Install go libraries
 
@@ -176,3 +176,27 @@ You will see the api running and you can check our name with the `/whoami` endpo
 Buildpack is easer to use than a dockerfile because developers don't need to know how to write a dockerfile, it detects the language and the dependencies and build the image for you
 
 But it's a lot slower than a dockerfile
+
+## Monitoring
+
+Install Helm
+
+```bash
+sudo snap install helm --classic
+```
+
+### Prometheus and Grafana
+
+Install Prometheus using their official Helm chart
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm install prometheus prometheus-community/prometheus
+```
+
+Install Grafana using their official Helm chart
+
+```bash
+helm repo add grafana https://grafana.github.io/helm-charts
+helm install grafana grafana/grafana
+```
