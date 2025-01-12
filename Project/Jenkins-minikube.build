@@ -41,6 +41,18 @@ pipeline {
                     sh """
                         kubectl apply -f deployment.yml -n dev
                         kubectl apply -f service.yml -n dev
+
+                        kubectl rollout status deployment/webapi-deployment -n dev
+                    """
+                }
+            }
+        }
+
+        stage('Test deployment dev'){
+            steps{
+                script{
+                    sh """
+                        echo "bonjou"
                     """
                 }
             }
