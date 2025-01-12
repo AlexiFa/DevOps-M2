@@ -52,7 +52,14 @@ pipeline {
             steps{
                 script{
                     sh """
-                        echo "bonjou"
+                        export SERVICE_IP=\$(minikube ip)
+                        export NODE_PORT=\$(kubectl get service webapi-service -n dev -o jsonpath='{.spec.ports[0].nodePort}')
+                        export SERVICE_URL="http://\$SERVICE_IP:\$NODE_PORT"
+
+                        response_code=\$(curl -s -o /dev/null -w "%{http_code}" \$SERVICE_URL/whoami)
+                        if [ "\$response_code" != "200" ]; then
+                            echo "service is up and healthy, code: \$response_code"
+                            exit 1
                     """
                 }
             }
