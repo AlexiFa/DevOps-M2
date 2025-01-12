@@ -65,6 +65,20 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy in prod'){
+            steps {
+                script {
+                    sh "kubectl create namespace prod --dry-run=client -o yaml | kubectl apply -f -"
+                    sh """
+                        kubectl apply -f deployment.yml -n prod
+                        kubectl apply -f service.yml -n prod
+
+                        kubectl rollout status deployment/webapi-deployment -n prod
+                    """
+                }
+            }
+        }
     }
 
 }
