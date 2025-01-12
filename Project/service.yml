@@ -10,5 +10,4 @@ spec:
   - name: http
     port: 8080      # Port du service
     targetPort: 8080
-    nodePort: 30081  # Port du container
     protocol: TCP

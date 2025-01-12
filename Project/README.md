@@ -141,13 +141,15 @@ Build the pipeline from the jenkins UI (it may take some time)
 ### Check the deployment
 
 ```bash
-kubectl get all
+kubectl get all -n prod
 ```
 
-You should see all the pods, deployments, services, and replicasets running
+You should see all the pods, deployments, services, and replicas running
 
 ### Access the API
 
 ```bash
 minikube service webapi-service -n prod
 ```
+
+You will see the api running and you can check our name with the `/whoami` endpoint
