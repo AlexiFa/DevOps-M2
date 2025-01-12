@@ -135,3 +135,19 @@ minikube start --driver=docker
 This time, select the Jenkins-minikube.build file
 
 ![Jenkins new pipeline](screen/4-jenkins-minikube-pipeline-jenkinsfile.png)
+
+Build the pipeline from the jenkins UI (it may take some time)
+
+### Check the deployment
+
+```bash
+kubectl get all
+```
+
+You should see all the pods, deployments, services, and replicasets running
+
+### Access the API
+
+```bash
+minikube service webapi-service -n prod
+```
