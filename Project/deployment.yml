@@ -16,11 +16,6 @@ spec:
       - name: webapi
         image: efrei2023/project-alexah:2001
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
           name: http
-        env:
-        - name: PORT
-          value: "8081"
-        - name: LISTEN_ADDR
-          value: ":8081"
         imagePullPolicy: Always
