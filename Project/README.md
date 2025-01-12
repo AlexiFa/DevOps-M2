@@ -224,3 +224,15 @@ kubectl --namespace prod port-forward $POD_NAME 3000
 ```
 
 Connect to Grafana at `http://localhost:3000` with the username `admin` and the password you got earlier
+
+From grafana UI, add new datasource and select Prometheus, then set the URL to `http://prometheus-server.prod.svc.cluster.local` (given by the output of the helm install command for prometheus)
+
+![Grafana datasource](screen/7-grafana-datasource-prometheus.png)
+
+Now create a Dashboard, select 'import dashboard' and use the ID `1860` (this is the ID of the dashboard we used)
+
+Select the Prometheus datasource you created earlier and click import
+
+![Grafana dashboard](screen/8-grafana-dashboard.png)
+
+### Alert Manager
