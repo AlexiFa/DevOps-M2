@@ -34,10 +34,10 @@ pipeline {
             }
         }
 
-        stage('Deploy Application') {
+        stage('Deploy Application minikube') {
             steps {
                 dir('Project') {
-                    sh 'docker compose up -d' // Remplacez par le fichier compose de votre projet
+                    sh 'echo "minikube deployment"' // Remplacez par le fichier compose de votre projet
                 }
             }
         }

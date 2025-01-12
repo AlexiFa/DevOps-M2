@@ -118,6 +118,10 @@ And you will see the API running at `http://localhost:8081`
 
 `http://localhost:8081/whoami` will return our names
 
+![Jenkins pipeline running](screen/result-whoami.png)
+
+## Kubernetes deployemnt
+
 ### Start minikube
 
 Start minikube with the following command
@@ -125,3 +129,9 @@ Start minikube with the following command
 ```bash
 minikube start --driver=docker
 ```
+
+### create a new item pipeline on Jenkins
+
+This time, select the Jenkins-minikube.build file
+
+![Jenkins new pipeline](screen/4-jenkins-minikube-pipeline-jenkinsfile.png)
