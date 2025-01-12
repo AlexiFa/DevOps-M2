@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Cloning Git') {
             steps {
-                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/AlexiFa/DevOps-M2'
+                git branch: 'main', url: 'https://github.com/AlexiFa/DevOps-M2'
             }
         }
 
@@ -34,10 +34,10 @@ pipeline {
             }
         }
 
-        stage('Deploy Application minikube') {
+        stage('Deploy Application in dev') {
             steps {
                 dir('Project') {
-                    sh 'echo "minikube deployment"' // Remplacez par le fichier compose de votre projet
+                    sh 'kubectl create namespace dev --dry-run=client -o yaml | kubectl apply -f -'
                 }
             }
         }

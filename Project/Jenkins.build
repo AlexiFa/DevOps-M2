@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy Application') {
             steps {
                 dir('Project') {
-                    sh 'docker compose up -d' // Remplacez par le fichier compose de votre projet
+                    sh 'docker compose up -d'
                 }
             }
         }
