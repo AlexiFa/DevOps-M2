@@ -1,0 +1,46 @@
+pipeline {
+    agent {
+        label 'jenkins-slave'
+    }
+
+    environment {
+        APP_IMAGE = "efrei2023/project-alexah:2001" // Nom et tag de l'image Docker
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+    }
+
+    stages {
+        stage('Cloning Git') {
+            steps {
+                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/AlexiFa/DevOps-M2'
+            }
+        }
+
+        stage('Building Application Image') {
+            steps {
+                script {
+                    dir('Project/webapi') {
+                        sh 'docker build -t ${APP_IMAGE} .'
+                    }
+                }
+            }
+        }
+
+        stage('Publishing Application Image') {
+            steps {
+                sh '''
+                    echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+                    docker push ${APP_IMAGE}
+                '''
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                dir('Project') {
+                    sh 'docker compose up -d' // Remplacez par le fichier compose de votre projet
+                }
+            }
+        }
+    }
+
+}
