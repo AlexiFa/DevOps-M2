@@ -58,8 +58,9 @@ pipeline {
 
                         response_code=\$(curl -s -o /dev/null -w "%{http_code}" \$SERVICE_URL/whoami)
                         if [ "\$response_code" != "200" ]; then
-                            echo "service is up and healthy, code: \$response_code"
+                            echo "service is not healthy code: \$response_code"
                             exit 1
+                        fi
                     """
                 }
             }
