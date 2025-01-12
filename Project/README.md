@@ -191,12 +191,36 @@ Install Prometheus using their official Helm chart
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm install prometheus prometheus-community/prometheus
+helm install prometheus prometheus-community/prometheus --namespace prod
 ```
 
-Install Grafana using their official Helm chart
+Run prometheus by running theses commands in the same shell (the output of the last command will give you theses commands)
+
+```bash
+export POD_NAME=$(kubectl get pods --namespace prod -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace prod port-forward $POD_NAME 9090
+```
+
+You can now access Prometheus at `http://localhost:9090`
+
+Install Grafana using their official Helm chart (in a different terminal to keep prometheus running)
 
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
-helm install grafana grafana/grafana
+helm install grafana grafana/grafana --namespace prod
 ```
+
+Get your admin password
+
+```bash
+kubectl get secret --namespace prod grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
+Run grafana by running theses commands in the same shell (the output of the last command will give you theses commands)
+
+```bash
+export POD_NAME=$(kubectl get pods --namespace prod -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=grafana" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace prod port-forward $POD_NAME 3000
+```
+
+Connect to Grafana at `http://localhost:3000` with the username `admin` and the password you got earlier
