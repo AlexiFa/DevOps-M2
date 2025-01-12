@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     dir('Project/webapi') {
-                        sh 'sudo docker build -t ${APP_IMAGE} .'
+                        sh 'docker build -t ${APP_IMAGE} .'
                     }
                 }
             }
@@ -28,8 +28,8 @@ pipeline {
         stage('Publishing Application Image') {
             steps {
                 sh '''
-                    echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                    sudo docker push ${APP_IMAGE}
+                    echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+                    docker push ${APP_IMAGE}
                 '''
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy Application') {
             steps {
                 dir('Project') {
-                    sh 'sudo docker compose up -d' // Remplacez par le fichier compose de votre projet
+                    sh 'docker compose up -d' // Remplacez par le fichier compose de votre projet
                 }
             }
         }
