@@ -17,22 +17,3 @@ spec:
         image: efrei2023/project-alexah:2001
         ports:
         - containerPort: 8081  # Modifié pour correspondre au port exposé dans le Dockerfile
-        resources:
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-          requests:
-            cpu: "200m"
-            memory: "256Mi"
-        livenessProbe:
-          httpGet:
-            path: /  # Ajustez ce chemin selon votre endpoint de santé
-            port: 8081
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /  # Ajustez ce chemin selon votre endpoint de santé
-            port: 8081
-          initialDelaySeconds: 5
-          periodSeconds: 10
