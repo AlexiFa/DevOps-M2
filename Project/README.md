@@ -146,6 +146,8 @@ kubectl get all -n prod
 
 You should see all the pods, deployments, services, and replicas running
 
+![Kubernetes deployment](screen/5-check-deployment-prod.png)
+
 ### Access the API
 
 ```bash
