@@ -20,6 +20,14 @@ git --version               # Should be Git 2.41.0 or higher
 
 ## Setup
 
+### Instal buildpacks
+
+```bash
+sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
+sudo apt-get update
+sudo apt-get install pack-cli
+```
+
 ### Retrieve the source code repository locally on your virtual machine with the command
 
 ```bash
@@ -155,3 +163,9 @@ minikube service webapi-service -n prod
 ```
 
 You will see the api running and you can check our name with the `/whoami` endpoint
+
+### Build with buildpacks
+
+Buildpack is easer to use than a dockerfile because developers don't need to know how to write a dockerfile, it detects the language and the dependencies and build the image for you
+
+But it's a lot slower than a dockerfile
