@@ -38,6 +38,10 @@ pipeline {
             steps {
                 dir('Project') {
                     sh 'kubectl create namespace dev --dry-run=client -o yaml | kubectl apply -f -'
+                    sh """
+                        kubectl apply -f deployment.yml -n dev
+                        kubectl apply -f service.yml -n dev
+                    """
                 }
             }
         }
