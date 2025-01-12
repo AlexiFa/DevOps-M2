@@ -26,6 +26,12 @@ git --version               # Should be Git 2.41.0 or higher
 git clone https://github.com/AlexiFa/DevOps-M2/Project.git
 ```
 
+### Set docker to be used without sudo
+
+```bash
+sudo usermod -aG docker $USER && newgrp docker
+```
+
 ### Launch Jenkins
 
 ```bash
@@ -114,13 +120,7 @@ And you will see the API running at `http://localhost:8081`
 
 ### Start minikube
 
-Add the user to the docker group to be able to use docker sithout sudo privileges
-
-```bash
-sudo usermod -aG docker $USER && newgrp docker
-```
-
-Then, you can start minikube with the following command
+Start minikube with the following command
 
 ```bash
 minikube start --driver=docker
