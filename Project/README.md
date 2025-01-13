@@ -344,3 +344,5 @@ Go into Project folder of the git repo if you are not already in it then run the
 ```bash
 helm install loki grafana/loki -f values.yml -n prod
 ```
+
+Configure Loki Data Source in Grafana with the URL `http://loki.prod.svc.cluster.local/` (given by the output of the helm install command for loki)
