@@ -300,5 +300,15 @@ Go into the Project folder of the git repo if you are not already in it (you can
 Apply the alert rules
 
 ```bash
-helm upgrade --reuse-values -f prometheus-alerts-rules.yaml prometheus prometheus-community/prometheus
+helm upgrade --reuse-values -f prometheus-alerts-rules.yml prometheus prometheus-community/prometheus --namespace prod
 ```
+
+Now you can delete the prometheus-prometheus-pushgateway deployment to test the alerts
+
+```bash
+kubectl delete deployment prometheus-prometheus-pushgateway -n prod
+```
+
+After some time, you should see the alerts in the Alert Manager UI (the config file is set to send an alert if the pushgateway is down for more than 1 minute but it take sometimes a bit more probably because of the performance of the VM)
+
+![Alert Manager](screen/9-alert-manager-output.png)
