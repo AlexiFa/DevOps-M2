@@ -346,3 +346,11 @@ helm install loki grafana/loki -f values.yml -n prod
 ```
 
 Configure Loki Data Source in Grafana with the URL `http://loki.prod.svc.cluster.local/` (given by the output of the helm install command for loki)
+
+![Grafana datasource](screen/11-grafana-datasource-loki.png)
+
+Now you have the logs in Grafana go to explore and Loki
+
+you can set the query like this
+
+![Grafana logs](screen/12-loki-query.png)
