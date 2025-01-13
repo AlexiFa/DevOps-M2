@@ -333,6 +333,14 @@ kubectl delete deployment prometheus-prometheus-pushgateway -n prod
 
 It takes a bit of time to receive the email but you should receive it after a few minutes
 
-I did one shot and you have receive an email on `lazhar.hamel@efrei.fr` the 13/01/2025 at 20:53 like this one
+I did one shot and you have receive an email on `lazhar.hamel@efrei.fr` the 13/01/2025 at 20:53 like this one with our names
 
 ![Email alert](screen/10-alert-manager-mail.png)
+
+## Log Management
+
+Go into Project folder of the git repo if you are not already in it then run the following command to install Loki
+
+```bash
+helm install loki grafana/loki -f values.yml -n prod
+```
