@@ -294,3 +294,11 @@ kubectl --namespace prod port-forward $POD_NAME 9093
 ```
 
 You can now access Alert Manager at `http://localhost:9093`
+
+Go into the Project folder of the git repo if you are not already in it (you can see the alert rules in the `alert.rules.yml` file)
+
+Apply the alert rules
+
+```bash
+helm upgrade --reuse-values -f prometheus-alerts-rules.yaml prometheus prometheus-community/prometheus
+```
