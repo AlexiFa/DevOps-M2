@@ -324,3 +324,9 @@ Apply the email config rules
 ```bash
 helm upgrade --reuse-values -f alertmanager-config-email.yml prometheus prometheus-community/prometheus --namespace prod
 ```
+
+Delete the alertmanager deployment again and you will receive an email with the alert (at the address you set in the config file)
+
+```bash
+kubectl delete deployment prometheus-prometheus-pushgateway -n prod
+```

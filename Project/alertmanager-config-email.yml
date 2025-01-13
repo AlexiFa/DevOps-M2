@@ -4,7 +4,7 @@ alertmanager:
       smtp_smarthost: 'smtp.gmail.com:587'
       smtp_from: 'projectdevops252@gmail.com'
       smtp_auth_username: 'projectdevops252@gmail.com'
-      smtp_auth_password: 'motdepasseprojectdevops'
+      smtp_auth_password: 'cqhn wpqr bmzo pqun'
       smtp_require_tls: true
 
     route:
