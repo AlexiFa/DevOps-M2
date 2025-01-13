@@ -330,3 +330,9 @@ Delete the alertmanager deployment again and you will receive an email with the 
 ```bash
 kubectl delete deployment prometheus-prometheus-pushgateway -n prod
 ```
+
+It takes a bit of time to receive the email but you should receive it after a few minutes
+
+I did one shot and you have receive an email on `lazhar.hamel@efrei.fr` the 13/01/2025 at 20:53 like this one
+
+![Email alert](screen/10-alert-manager-mail.png)
