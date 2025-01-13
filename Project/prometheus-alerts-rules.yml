@@ -9,5 +9,5 @@ serverFiles:
             labels:
               severity: critical
             annotations:
-              description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minutes."
-              summary: "Instance {{ $labels.instance }} down"
+              description: "This is a message of alert manager from Team 9, I think you should give us a 20/20 on the project :)"
+              summary: "Alexis FAURE, Noah ATTIA, Elisa CHAZARD, Guillaume CLAVIER"
