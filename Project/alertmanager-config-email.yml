@@ -13,4 +13,5 @@ alertmanager:
     receivers:
       - name: 'email-alert'
         email_configs:
-          - to: 'lazhar.hamel@efrei.fr,alex6faure@gmail.com'
+          - to: 'lazhar.hamel@efrei.fr'
+          - to: 'alex6faure@gmail.com'
