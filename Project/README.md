@@ -171,11 +171,60 @@ minikube service webapi-service -n prod
 
 You will see the api running and you can check our name with the `/whoami` endpoint
 
-### Build with buildpacks
+## Using Buildpack to Build and Run the Application
 
-Buildpack is easer to use than a dockerfile because developers don't need to know how to write a dockerfile, it detects the language and the dependencies and build the image for you
+### Install Buildpack (Pack CLI)
 
-But it's a lot slower than a dockerfile
+**Download and Extract Buildpack**:
+   ```bash
+   curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.31.0/pack-v0.31.0-linux.tgz" | tar -xvzf -
+   ```
+**Move the Binary to `/usr/local/bin`**:
+   ```bash
+   sudo mv pack /usr/local/bin/
+   ```
+ **Verify Installation**:
+   ```bash
+   pack --version
+   ```
+
+**Build the Image**:
+   Use the following command to build the image using Buildpack:
+   ```bash
+   pack build st2dce-project:buildpack --builder paketobuildpacks/builder:base
+   ```
+
+**Verify the Built Image**:
+   List the images to confirm the new image is created:
+   ```bash
+   docker images
+   ```
+**Run the Application**:
+   Start a container from the built image:
+   ```bash
+   docker run -d -p 8080:8080 st2dce-project:buildpack
+   ```
+**Test the `/whoami` Endpoint**:
+   Use `curl` to test if the application is working:
+   ```bash
+   curl http://localhost:8080/whoami
+   ```
+**Advantages of Buildpack**:
+   - Eliminates the need for a `Dockerfile`.
+   - Automates optimization and security configurations.
+   - Simplifies the workflow for standard Go applications.
+
+**Limitations of Buildpack**:
+   - Less control over the build process compared to Dockerfile.
+   - Relies on existing Buildpacks, which may not support all advanced use cases.
+
+**Performance**:
+   - Buildpack-produced images are slightly smaller and faster for simple apps.
+   - Dockerfile provides better flexibility for larger or more complex builds.
+
+
+
+
 
 ## Monitoring
 
