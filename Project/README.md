@@ -285,3 +285,10 @@ Select the Prometheus datasource you created earlier and click import
 ![Grafana dashboard](screen/8-grafana-dashboard.png)
 
 ### Alert Manager
+
+Get the alert manager URL
+
+```bash
+export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=alertmanager,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace monitoring port-forward $POD_NAME 9093
+```
