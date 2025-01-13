@@ -312,3 +312,15 @@ kubectl delete deployment prometheus-prometheus-pushgateway -n prod
 After some time, you should see the alerts in the Alert Manager UI (the config file is set to send an alert if the pushgateway is down for more than 1 minute but it take sometimes a bit more probably because of the performance of the VM)
 
 ![Alert Manager](screen/9-alert-manager-output.png)
+
+Recreate de deployment
+
+```bash
+helm upgrade prometheus prometheus-community/prometheus --namespace prod
+```
+
+Apply the email config rules
+
+```bash
+helm upgrade --reuse-values -f alertmanager-config-email.yml prometheus prometheus-community/prometheus --namespace prod
+```
