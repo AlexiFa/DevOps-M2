@@ -289,6 +289,8 @@ Select the Prometheus datasource you created earlier and click import
 Get the alert manager URL
 
 ```bash
-export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=alertmanager,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
-kubectl --namespace monitoring port-forward $POD_NAME 9093
+export POD_NAME=$(kubectl get pods --namespace prod -l "app.kubernetes.io/name=alertmanager,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace prod port-forward $POD_NAME 9093
 ```
+
+You can now access Alert Manager at `http://localhost:9093`
