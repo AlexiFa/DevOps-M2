@@ -1,0 +1,4 @@
+config:
+  lokiAddress: http://loki-gateway.default.svc.cluster.local/
+  client:
+    tenant_id: "default"  # Replace with your OrgID
