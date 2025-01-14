@@ -20,13 +20,6 @@ git --version               # Should be Git 2.41.0 or higher
 
 ## Setup
 
-<!-- ### Instal buildpacks
-
-```bash
-sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
-sudo apt-get update
-sudo apt-get install pack-cli
-``` -->
 <!-- 
 Install go libraries
 
@@ -175,56 +168,60 @@ You will see the api running and you can check our name with the `/whoami` endpo
 
 ### Install Buildpack (Pack CLI)
 
-**Download and Extract Buildpack**:
-   ```bash
-   curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.31.0/pack-v0.31.0-linux.tgz" | tar -xvzf -
-   ```
-**Move the Binary to `/usr/local/bin`**:
-   ```bash
-   sudo mv pack /usr/local/bin/
-   ```
- **Verify Installation**:
-   ```bash
-   pack --version
-   ```
+```bash
+sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
+sudo apt-get update
+sudo apt-get install pack-cli
+pack --version
+```
 
-**Build the Image**:
-   Use the following command to build the image using Buildpack:
-   ```bash
-   pack build st2dce-project:buildpack --builder paketobuildpacks/builder:base
-   ```
+Go into the Project/webapi folder of the git repo if you are not already in it
 
-**Verify the Built Image**:
-   List the images to confirm the new image is created:
-   ```bash
-   docker images
-   ```
-**Run the Application**:
-   Start a container from the built image:
-   ```bash
-   docker run -d -p 8080:8080 st2dce-project:buildpack
-   ```
-**Test the `/whoami` Endpoint**:
-   Use `curl` to test if the application is working:
-   ```bash
-   curl http://localhost:8080/whoami
-   ```
+Before running the command, We had to change the go version from 1.21.5 to 1.20 because buildpack is not compatible
+
+```bash
+pack build efrei2023/project-alexah-buildpack:2001 --path . --builder paketobuildpacks/builder:base
+```
+
+![Buildpack build](screen/output-buildpack-success.png)
+
+List the images to confirm the new image is created:
+
+```bash
+docker images
+```
+
+![Buildpack image](screen/bildpack-image.png)
+
+Start a container from the built image:
+
+```bash
+docker run -d -p 8082:8080 efrei2023/project-alexah-buildpack:2001
+```
+
+Check if the container is running by visiting `http://localhost:8082/whoami` in a web browser.
+
+![Buildpack whoami](screen/result-app-build-pack.png)
+
 **Advantages of Buildpack**:
-   - Eliminates the need for a `Dockerfile`.
-   - Automates optimization and security configurations.
-   - Simplifies the workflow for standard Go applications.
+
+- Eliminates the need for a `Dockerfile`.
+
+- Automates optimization and security configurations.
 
 **Limitations of Buildpack**:
-   - Less control over the build process compared to Dockerfile.
-   - Relies on existing Buildpacks, which may not support all advanced use cases.
+
+- Less control over the build process compared to Dockerfile.
+
+- Relies on existing Buildpacks, We needed to change the version of go to make it work.
 
 **Performance**:
-   - Buildpack-produced images are slightly smaller and faster for simple apps.
-   - Dockerfile provides better flexibility for larger or more complex builds.
 
+- Buildpack-produced images are slightly smaller and faster for simple apps.
 
+- Dockerfile provides better flexibility for larger or more complex builds.
 
-
+- The buid process for build pack is a lot slower than the dockerfile (it had to install others images of buildpacks)
 
 ## Monitoring
 
