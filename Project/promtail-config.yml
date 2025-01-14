@@ -1,6 +1,6 @@
 config:
   clients:
-    - url: http://loki-gateway.default.svc.cluster.local/loki/api/v1/push
+    - url: http://loki-gateway.prod.svc.cluster.local/loki/api/v1/push
       tenant_id: "default" # Replace "default" with the desired OrgID
   positions:
     filename: /run/promtail/positions.yaml
