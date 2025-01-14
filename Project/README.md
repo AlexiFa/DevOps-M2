@@ -177,7 +177,7 @@ pack --version
 
 Go into the Project/webapi folder of the git repo if you are not already in it
 
-Before running the command, We had to change the go version from 1.21.5 to 1.20 because buildpack is not compatible
+Before running the command, We had to change the go version from 1.21.5 to 1.20 (in the go.mod) because buildpack is not compatible
 
 ```bash
 pack build efrei2023/project-alexah-buildpack:2001 --path . --builder paketobuildpacks/builder:base
