@@ -1,4 +1,15 @@
 config:
-  lokiAddress: http://loki-gateway.default.svc.cluster.local/
-  client:
-    tenant_id: "default"  # Replace with your OrgID
+  clients:
+    - url: http://loki-gateway.default.svc.cluster.local/loki/api/v1/push
+      tenant_id: "default" # Replace "default" with the desired OrgID
+  positions:
+    filename: /run/promtail/positions.yaml
+  scrape_configs:
+    - job_name: kubernetes-pods
+      kubernetes_sd_configs:
+        - role: pod
+      relabel_configs:
+        - source_labels: [__meta_kubernetes_namespace]
+          target_label: namespace
+        - source_labels: [__meta_kubernetes_pod_name]
+          target_label: pod
