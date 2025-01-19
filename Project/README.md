@@ -139,7 +139,7 @@ And you will see the API running at `http://localhost:8080`
 Start minikube with the following command
 
 ```bash
-minikube start --driver=docker
+minikube start --driver=docker --memory=6000 --cpus=4 # because of the requirements of the project (loki)
 ```
 
 ### create a new item pipeline on Jenkins
