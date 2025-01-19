@@ -357,6 +357,12 @@ you need to install promtail to give the logs to loki
 helm install promtail grafana/promtail -f promtail-values.yml -n prod
 ```
 
+Verify the logs are being sent to Loki
+
+```bash
+kubectl logs -l app=promtail -n prod
+```
+
 Now you have the logs in Grafana go to explore and Loki
 
 you can set the query like this
