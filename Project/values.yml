@@ -62,16 +62,17 @@ chunkCacheConfig:
     enabled: true
     resources:
       requests:
-        memory: "128Mi"  # Minimal memory request for memcached
+        memory: "64Mi"  # Request only 64Mi for chunk cache
         cpu: "50m"
       limits:
-        memory: "256Mi"
+        memory: "128Mi"  # Cap memory usage to 128Mi
         cpu: "100m"
 
 resources:
   requests:
-    memory: "256Mi"  # Minimal memory request for Loki
+    memory: "256Mi"  # Request only 256Mi for Loki itself
     cpu: "250m"
   limits:
-    memory: "1Gi"
+    memory: "512Mi"  # Cap Loki memory usage at 512Mi
     cpu: "500m"
+
