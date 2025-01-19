@@ -62,20 +62,16 @@ chunkCacheConfig:
     enabled: true
     resources:
       requests:
-        memory: "256Mi" # Minimum memory required to run memcached
-        cpu: "100m"
+        memory: "128Mi"  # Minimal memory request for memcached
+        cpu: "50m"
       limits:
-        memory: "512Mi" # Ensure there's a hard limit for stability
-        cpu: "200m"
-
-queryFrontendCacheConfig:
-  memcached:
-    enabled: false
+        memory: "256Mi"
+        cpu: "100m"
 
 resources:
-  limits:
-    memory: "2Gi" # General limit for Loki
-    cpu: "1"
   requests:
-    memory: "1Gi" # Minimum required for Loki to function
+    memory: "256Mi"  # Minimal memory request for Loki
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
     cpu: "500m"
