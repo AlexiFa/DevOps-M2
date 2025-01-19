@@ -351,6 +351,12 @@ Configure Loki Data Source in Grafana with the URL `http://loki.prod.svc.cluster
 
 ![Grafana datasource](screen/11-grafana-datasource-loki.png)
 
+you need to install promtail to give the logs to loki
+
+```bash
+helm install promtail grafana/promtail -f promtail-values.yml -n prod
+```
+
 Now you have the logs in Grafana go to explore and Loki
 
 you can set the query like this
