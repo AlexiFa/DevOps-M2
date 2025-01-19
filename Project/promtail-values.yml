@@ -1,6 +1,6 @@
 config:
   clients:
-    - url: http://loki:3100/loki/api/v1/push  # URL de Loki
+    - url: http://loki.prod.svc.cluster.local/loki/api/v1/push
   positions:
     filename: /tmp/positions.yaml
   scrape_configs:
