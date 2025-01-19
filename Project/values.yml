@@ -24,7 +24,7 @@ loki:
 
 minio:
   enabled: true
-      
+
 deploymentMode: SingleBinary
 
 singleBinary:
@@ -56,3 +56,26 @@ bloomCompactor:
   replicas: 0
 bloomGateway:
   replicas: 0
+
+chunkCacheConfig:
+  memcached:
+    enabled: true
+    resources:
+      requests:
+        memory: "256Mi" # Minimum memory required to run memcached
+        cpu: "100m"
+      limits:
+        memory: "512Mi" # Ensure there's a hard limit for stability
+        cpu: "200m"
+
+queryFrontendCacheConfig:
+  memcached:
+    enabled: false
+
+resources:
+  limits:
+    memory: "2Gi" # General limit for Loki
+    cpu: "1"
+  requests:
+    memory: "1Gi" # Minimum required for Loki to function
+    cpu: "500m"
