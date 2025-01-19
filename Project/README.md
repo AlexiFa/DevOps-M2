@@ -35,7 +35,8 @@ go get -u github.com/cncf/buildpack/pack
 ### Retrieve the source code repository locally on your virtual machine with the command
 
 ```bash
-git clone https://github.com/AlexiFa/DevOps-M2/Project.git
+git clone https://github.com/AlexiFa/DevOps-M2.git
+cd DevOps-M2/Project
 ```
 
 ### Set docker to be used without sudo
